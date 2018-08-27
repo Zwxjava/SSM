@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.text.dao.UserinfoMapper" >
+  <resultMap id="BaseResultMap" type="com.text.entitys.Userinfo" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="login_name" property="loginName" jdbcType="VARCHAR" />
+    <result column="login_password" property="loginPassword" jdbcType="CHAR" />
+    <result column="type" property="type" jdbcType="SMALLINT" />
+    <result column="create_at" property="createAt" jdbcType="BIGINT" />
+    <result column="update_at" property="updateAt" jdbcType="BIGINT" />
+    <result column="last_login_at" property="lastLoginAt" jdbcType="BIGINT" />
+    <result column="pwdcode" property="pwdcode" jdbcType="CHAR" />
+    <result column="pwdcode_expire" property="pwdcodeExpire" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, login_name, login_password, type, create_at, update_at, last_login_at, pwdcode, 
+    pwdcode_expire
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from userinfo
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+   <select id="queryAll" resultMap="BaseResultMap">
+    select 
+      *
+    from userinfo
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from userinfo
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.text.entitys.Userinfo" >
+    insert into userinfo (id, login_name, login_password, 
+      type, create_at, update_at, 
+      last_login_at, pwdcode, pwdcode_expire
+      )
+    values (#{id,jdbcType=BIGINT}, #{loginName,jdbcType=VARCHAR}, #{loginPassword,jdbcType=CHAR}, 
+      #{type,jdbcType=SMALLINT}, #{createAt,jdbcType=BIGINT}, #{updateAt,jdbcType=BIGINT}, 
+      #{lastLoginAt,jdbcType=BIGINT}, #{pwdcode,jdbcType=CHAR}, #{pwdcodeExpire,jdbcType=BIGINT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.text.entitys.Userinfo" >
+    insert into userinfo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="loginName != null" >
+        login_name,
+      </if>
+      <if test="loginPassword != null" >
+        login_password,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="createAt != null" >
+        create_at,
+      </if>
+      <if test="updateAt != null" >
+        update_at,
+      </if>
+      <if test="lastLoginAt != null" >
+        last_login_at,
+      </if>
+      <if test="pwdcode != null" >
+        pwdcode,
+      </if>
+      <if test="pwdcodeExpire != null" >
+        pwdcode_expire,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="loginName != null" >
+        #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPassword != null" >
+        #{loginPassword,jdbcType=CHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=SMALLINT},
+      </if>
+      <if test="createAt != null" >
+        #{createAt,jdbcType=BIGINT},
+      </if>
+      <if test="updateAt != null" >
+        #{updateAt,jdbcType=BIGINT},
+      </if>
+      <if test="lastLoginAt != null" >
+        #{lastLoginAt,jdbcType=BIGINT},
+      </if>
+      <if test="pwdcode != null" >
+        #{pwdcode,jdbcType=CHAR},
+      </if>
+      <if test="pwdcodeExpire != null" >
+        #{pwdcodeExpire,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.text.entitys.Userinfo" >
+    update userinfo
+    <set >
+      <if test="loginName != null" >
+        login_name = #{loginName,jdbcType=VARCHAR},
+      </if>
+      <if test="loginPassword != null" >
+        login_password = #{loginPassword,jdbcType=CHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=SMALLINT},
+      </if>
+      <if test="createAt != null" >
+        create_at = #{createAt,jdbcType=BIGINT},
+      </if>
+      <if test="updateAt != null" >
+        update_at = #{updateAt,jdbcType=BIGINT},
+      </if>
+      <if test="lastLoginAt != null" >
+        last_login_at = #{lastLoginAt,jdbcType=BIGINT},
+      </if>
+      <if test="pwdcode != null" >
+        pwdcode = #{pwdcode,jdbcType=CHAR},
+      </if>
+      <if test="pwdcodeExpire != null" >
+        pwdcode_expire = #{pwdcodeExpire,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.text.entitys.Userinfo" >
+    update userinfo
+    set login_name = #{loginName,jdbcType=VARCHAR},
+      login_password = #{loginPassword,jdbcType=CHAR},
+      type = #{type,jdbcType=SMALLINT},
+      create_at = #{createAt,jdbcType=BIGINT},
+      update_at = #{updateAt,jdbcType=BIGINT},
+      last_login_at = #{lastLoginAt,jdbcType=BIGINT},
+      pwdcode = #{pwdcode,jdbcType=CHAR},
+      pwdcode_expire = #{pwdcodeExpire,jdbcType=BIGINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
